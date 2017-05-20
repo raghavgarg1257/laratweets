@@ -10,7 +10,11 @@
                     <span class="h2">{{ $user->name }}</span>, <span>{{ $user->email }}</span>
 
                     <button type="button" name="button" class="btn btn-primary pull-right">
-                        Follow
+                        @if ($user->followed)
+                            Unfollow
+                        @else
+                            Follow
+                        @endif
                     </button>
                 </div>
             </div>

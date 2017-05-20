@@ -70,6 +70,9 @@ class UserController extends Controller
         // getting feeds
         $feed = Auth::user()->getFeed($username);
 
+        $followed_user = Auth::user()->followed_users()->pluck('id')->toArray();
+        $user->followed = !!in_array($user->id, $followed_user);
+
         // showing users profile page
         return view('user', compact('feed', 'user'));
     }
