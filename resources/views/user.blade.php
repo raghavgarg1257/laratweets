@@ -10,21 +10,23 @@
                 <div class="panel-body">
                     <span class="h2">{{ $user->name }}</span>, <span>{{ $user->email }}</span>
 
-                    <button
-                        type="button"
-                        id="toggleFollowButton"
-                        class="btn btn-primary pull-right"
-                        onclick="handleToggleFollow()"
-                        data-user-id="{{ Auth::user()->id }}"
-                        data-other-user-id="{{ $user->id }}"
-                        data-status="{{ $user->followed ? 0 : 1 }}"
-                    >
-                        @if ($user->followed)
-                            Unfollow
-                        @else
-                            Follow
-                        @endif
-                    </button>
+                    @if ($user->id != Auth::user()->id)
+                        <button
+                            type="button"
+                            id="toggleFollowButton"
+                            class="btn btn-primary pull-right"
+                            onclick="handleToggleFollow()"
+                            data-user-id="{{ Auth::user()->id }}"
+                            data-other-user-id="{{ $user->id }}"
+                            data-status="{{ $user->followed ? 0 : 1 }}"
+                        >
+                            @if ($user->followed)
+                                Unfollow
+                            @else
+                                Follow
+                            @endif
+                        </button>
+                    @endif
                 </div>
             </div>
         </div>
