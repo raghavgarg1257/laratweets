@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 
 use App\User;
+use App\Follower;
 
 class UserController extends Controller
 {
@@ -110,4 +111,47 @@ class UserController extends Controller
     {
         //
     }
+
+    public function toggleFollow(Request $request)
+    {
+        if (
+            User::find($request->user_id) &&
+            User::find($request->other_user_id)
+        ) {
+
+            $current_status = Follower::where([
+                ['user_id', '=', $request->user_id],
+                ['followed_user_id', '=', $request->other_user_id]
+            ])->first();
+
+            if ($request->status && !$current_status) {
+                // make record in follower table
+                $follow = new Follower([
+                    'user_id' => $request->user_id,
+                    'followed_user_id' => $request->other_user_id
+                ]);
+                $follow->save();
+                return 1;
+            }
+            else if (!$request->status && $current_status) {
+                // delete record from follower table
+                Follower::where([
+                    ['user_id', '=', $request->user_id],
+                    ['followed_user_id', '=', $request->other_user_id]
+                ])->delete();
+                return 1;
+            }
+            else {
+                // bad request
+                return 0;
+            }
+
+        }
+        else {
+            // bad request
+            return 0;
+        }
+    }
+
+
 }
