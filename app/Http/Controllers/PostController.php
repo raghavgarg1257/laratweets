@@ -37,6 +37,10 @@ class PostController extends Controller
      */
     public function create(Request $request)
     {
+        $this->validate($request, [
+            'tweet' => 'required|max:140',
+        ]);
+
         $tweet = new Post([ 'body' => $request->tweet ]);
         Auth::user()->posts()->save($tweet);
 

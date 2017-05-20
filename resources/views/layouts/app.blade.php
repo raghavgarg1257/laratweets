@@ -12,6 +12,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style media="screen">
+        .error-div {
+            margin-top: 2em;
+        }
+    </style>
+    
 </head>
 <body>
     <div id="app">

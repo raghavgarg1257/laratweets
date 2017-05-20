@@ -8,15 +8,26 @@
                 <div class="panel-heading">Whats On Your Mind?</div>
 
                 <div class="panel-body">
-                    <form action="post" method="post">
-                        {{ csrf_field() }}
-                        <div class="col-md-10">
-                            <input type="text" name="tweet" class="form-control" required>
+                    <div class="col-md-12">
+                        <form action="post" method="post">
+                            {{ csrf_field() }}
+                            <div class="col-md-10">
+                                <input type="text" name="tweet" class="form-control">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary">Tweet</button>
+                            </div>
+                        </form>
+                    </div>
+                    @if (count($errors) > 0)
+                    <div class="col-md-12 error-div">
+                        <div class="alert alert-danger">
+                            @foreach ($errors->all() as $error)
+                                {{ $error }}
+                            @endforeach
                         </div>
-                        <div class="col-md-2">
-                            <button type="submit" class="btn btn-primary">Tweet</button>
-                        </div>
-                    </form>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>
