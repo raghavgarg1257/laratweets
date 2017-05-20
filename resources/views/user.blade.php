@@ -3,23 +3,19 @@
 @section('content')
 <div class="container">
     <div class="row">
+
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Whats On Your Mind?</div>
-
                 <div class="panel-body">
-                    <form action="post" method="post">
-                        {{ csrf_field() }}
-                        <div class="col-md-10">
-                            <input type="text" name="tweet" class="form-control" required>
-                        </div>
-                        <div class="col-md-2">
-                            <button type="submit" class="btn btn-primary">Tweet</button>
-                        </div>
-                    </form>
+                    <span class="h2">{{ $user->name }}</span>, <span>{{ $user->email }}</span>
+
+                    <button type="button" name="button" class="btn btn-primary pull-right">
+                        Follow
+                    </button>
                 </div>
             </div>
         </div>
+
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Tweets</div>
@@ -39,6 +35,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 @endsection

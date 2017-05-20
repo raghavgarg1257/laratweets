@@ -60,8 +60,19 @@ class User extends Authenticatable
     /**
      * to get the latest feed of the current user
      */
-    public function getFeed()
+    public function getFeed($username = null)
     {
+        if ($username) {
+            return Post::
+                join('users', 'users.id', '=', 'posts.user_id')
+                ->where('users.name', '=', $username)
+                ->select('posts.*')
+                ->latest()
+                ->limit(10)
+                ->with('user')
+                ->get();
+        }
+
         $self = Post::where('user_id', '=', $this->id);
 
         return Post::

@@ -20,3 +20,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/post', 'PostController@create');
+
+// it should always be in last, so that other routes can also be valid
+Route::get('/{username}', 'UserController@show');
