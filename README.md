@@ -9,7 +9,7 @@ cd laratweets
 composer install
 npm install
 touch .env
-cp env.example .env
+cp .env.example .env
 nano .env # edit database credentials, add DB name and also create it on your machine
 php artisan migrate:refresh
 php artisan serve # app will be started on localhost:8000
